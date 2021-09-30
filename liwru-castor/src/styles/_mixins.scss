@@ -1,0 +1,68 @@
+@import "./variables";
+
+$titulo: #191919;
+$fuente: #4c4c4c;
+$verde: #5ad1a4;
+@mixin texto {
+  color: $fuente;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: left;
+}
+@mixin titulo {
+  color: $titulo;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  line-height: 32px;
+  text-align: center;
+}
+@mixin titulo-form {
+  color: $titulo;
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  line-height: 32px;
+  text-align: center;
+}
+@mixin label-form {
+  color: #182233;
+  display: block;
+  font-family: "Quicksand", sans-serif;
+}
+@mixin input-form {
+  border: 1px solid #cfcfd0;
+  border-radius: 7px;
+  color: #182233;
+  font-family: "Open Sans", sans-serif;
+  padding: 8px 16px;
+}
+@mixin boton-primario {
+  align-items: center;
+  background-color: $verde;
+  border: 2px solid $verde;
+  border-radius: 28px;
+  color: white;
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  @include bold;
+  height: 48px;
+  justify-content: center;
+  margin: 0 21px;
+  padding: 0 21px;
+}
+@mixin boton-secundario {
+  align-items: center;
+  background-color: white;
+  border: 2px solid $verde;
+  border-radius: 28px;
+  color: $verde;
+  display: flex;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  @include bold;
+  height: 48px;
+  justify-content: center;
+  margin: 0 21px;
+  padding: 0 21px;
+}
