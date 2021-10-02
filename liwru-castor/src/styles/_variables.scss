@@ -8,10 +8,15 @@ $color2: #ff4f10;
 $color3: #0063bd;
 
 $color4: #ff7800;
+$color4-hover: #ff9333;
 
-/* secundarios*/
+/* secundarios */
 $blanco: white;
 $negro: black;
+
+/* validaciones */
+$valid: #4caf50;
+$invalid: #f44336;
 
 /* tipografías de marca y tamaños de fuente */
 @mixin light {

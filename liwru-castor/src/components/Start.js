@@ -1,6 +1,8 @@
 import React from "react";
+import whatsapp from "../assets/images/whatsapp.svg";
+import { Link } from "react-router-dom";
 
-const Start = () => {
+export const Start = () => {
   return (
     <div className="liwru">
       <div className="liwru-home">
@@ -12,12 +14,15 @@ const Start = () => {
           considerar la regulación del arbitraje de consumo.
         </p>
         <div className="liwru-actions">
-          <a className="liwru-actions-goon gotoIncidencia">
+          <Link to="/step-zero" className="liwru-actions-goon gotoIncidencia">
             Hacer un reclamo o queja
-          </a>
-          <a className="liwru-actions-goon gotoSearcher">
+          </Link>
+          <Link
+            to="/buscar-incidencia"
+            className="liwru-actions-goon gotoSearcher"
+          >
             Ver mi reclamo o queja
-          </a>
+          </Link>
         </div>
       </div>
       <div className="liwru-actions outside">
@@ -25,11 +30,12 @@ const Start = () => {
           href="https://api.whatsapp.com/send?phone=51993119898"
           className="liwru-actions-goon gotoWhatsapp"
         >
-          <i className="fas-fa-whatsapp"></i> ¡Hola! ¿Cómo te puedo ayudar?
+          <img src={whatsapp} alt="Cuéntamos por Whatsapp!" /> ¡Hola! ¿Cómo te
+          puedo ayudar?
         </a>
       </div>
     </div>
   );
 };
 
-export default Start;
+// figma: home
