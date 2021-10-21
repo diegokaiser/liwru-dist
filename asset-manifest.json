@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7d536f95.chunk.css",
+    "main.js": "/static/js/main.aa04cc51.chunk.js",
+    "main.js.map": "/static/js/main.aa04cc51.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d6b4157a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d6b4157a.js.map",
+    "static/js/2.3f702fab.chunk.js": "/static/js/2.3f702fab.chunk.js",
+    "static/js/2.3f702fab.chunk.js.map": "/static/js/2.3f702fab.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.7d536f95.chunk.css.map": "/static/css/main.7d536f95.chunk.css.map",
+    "static/js/2.3f702fab.chunk.js.LICENSE.txt": "/static/js/2.3f702fab.chunk.js.LICENSE.txt",
+    "static/media/alarm.d64433a0.svg": "/static/media/alarm.d64433a0.svg",
+    "static/media/check.ff29bb21.svg": "/static/media/check.ff29bb21.svg",
+    "static/media/index.scss": "/static/media/terceraIt.e8c81a32.eot",
+    "static/media/error.8107efb9.svg": "/static/media/error.8107efb9.svg",
+    "static/media/plus.524511f1.svg": "/static/media/plus.524511f1.svg",
+    "static/media/success.dad24989.svg": "/static/media/success.dad24989.svg",
+    "static/media/trash.6b7bdf26.svg": "/static/media/trash.6b7bdf26.svg",
+    "static/media/whatsapp.4a161009.svg": "/static/media/whatsapp.4a161009.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6b4157a.js",
+    "static/js/2.3f702fab.chunk.js",
+    "static/css/main.7d536f95.chunk.css",
+    "static/js/main.aa04cc51.chunk.js"
+  ]
+}
