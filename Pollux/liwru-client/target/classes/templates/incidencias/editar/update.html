@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Editar Incidencia</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div th:replace="/fragments/sidebar :: sidebar"></div>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <div th:replace="/fragments/topbar :: topbar"></div>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Editar de Incidencia</h1>
+        </div>
+
+        <form  method="POST" >
+
+          <div class="form-group">
+            <a>Codigo</a>
+            <input type="text" class="form-control form-control-user" id="codigo" name="codigo"
+                   value=""  placeholder="BCP-000001" disabled>
+          </div>
+
+          <div class="form-group">
+            <a>Fecha incidencia</a>
+            <input type="text" class="form-control form-control-user" id="fechainc" name="fechainc"
+                   value=""  placeholder="2021-07-15" disabled>
+          </div>
+          <div class="form-group">
+            <a>Tipo incidencia</a>
+            <input type="text" class="form-control form-control-user" id="tipoinc" name="tipoinc"
+                   value="" placeholder="QUEJA" disabled>
+          </div>
+          <div class="form-group">
+            <a>Motivo</a>
+            <input type="text" class="form-control form-control-user" id="motivo" name="motivo"
+                   value="" placeholder="Demora en la atención" disabled>
+          </div>
+          <div class="form-group" style="">
+            <a>Estado</a> <br>
+            <select class="select-css " style="
+  color: #0063bd;
+  background: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 10px;
+  width: 378px;
+  *width: 350px;
+" >
+              <option value="1">Recibido</option>
+              <option value="2">En Proceso</option>
+              <option value="3">Resuelto</option>
+              <option value="3">Rechazado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <a>Sede</a>
+            <input type="text" class="form-control form-control-user" id="sede" name="sede"
+                   value="BCP Agencia Tumbes" placeholder="" disabled>
+          </div>
+          <div class="form-group">
+            <a>Agraviado</a>
+            <input type="text" class="form-control form-control-user" id="agraviado" name="agraviado"
+                   value="LUIGGI FABIAN, MINCHOLA CHICLE" placeholder="" disabled>
+          </div>
+          <div class="form-group">
+            <a>Tipo Atención</a>
+            <input type="text" class="form-control form-control-user" id="tipoate" name="tipoate"
+                   value="PRESENCIAL" placeholder="" disabled>
+          </div>
+
+
+          <div class="form-group">
+            <a>Documento de Evidencia</a>
+            <input type="text" class="form-control form-control-user" id="docevi" name="docevi"
+                   value="Documentos de registro y afiliación al banco, ticket con el numero y hora de atención" placeholder="" disabled>
+          </div>
+
+          <div class="form-group">
+            <a>Pedido de Incidencia</a>
+            <input type="text" class="form-control form-control-user" id="pedidoInc" name="pedidoInc"
+                   value="buen día, me gustaria que mejoraran en el area de atencion al cliente, puede observar que demoran demasiado en ello." placeholder="" disabled>
+          </div>
+
+          <div class="form-group">
+            <a>Detalles de Incidencia</a>
+            <input type="text" class="form-control form-control-user" id="detalleinci" name="detalleinci"
+                   value="Hay mucha demora en a la atención, motivo por el cual se le escribe" placeholder="" disabled>
+          </div>
+
+          <div class="form-group">
+            <a>Tipo de contacto</a>
+            <input type="text" class="form-control form-control-user" id="tipocont" name="tipocont"
+                   value="" placeholder="E-MAIL" disabled>
+          </div>
+
+
+
+          <div class="form-group">
+            <a>Responsable</a> <br>
+            <select  name="selectRes" style="
+              color: #0063bd;
+  background: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 10px;
+  width: 378px;
+  *width: 350px;
+">
+              <option selected >Seleccionar responsable</option>
+              <option value="value1" >LUIS ENRIQUE</option>
+              <option value="value2" >NICOLE KATHERINE</option>
+              <option value="value3">CRISTIAN ORLANDO</option>
+            </select>
+          </div>
+
+          <!--                    <div class="form-group">-->
+          <!--	                        <textarea class="form-control form-control-user" id="detalle" name="detalle"-->
+          <!--                                      rows="5" th:field="*{detalle}"></textarea>-->
+          <!--                    </div>-->
+          <!--                    <div class="form-group">-->
+          <!--                        <input type="text" class="form-control form-control-user" id="fecha" name="fecha"-->
+          <!--                               value="" th:field="*{usuarioEnvia.nombres}">-->
+          <!--                    </div>-->
+          <input type="submit" class="btn btn-success btn-user btn-block" value="Guardar">
+          <input type="button" class="btn btn-danger btn-user btn-block" value="Cancelar">
+        </form>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <div th:replace="/fragments/footer :: footer"></div>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="https://liwru.s3.amazonaws.comvendor/jquery/jquery.min.js"></script>
+<script src="https://liwru.s3.amazonaws.comvendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- CorluginavaScript-->
+<script src="https://liwru.s3.amazonaws.comvendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Cus scris for all pages-->
+<script src="https://liwru.s3.amazonaws.comjs/sb-admin-2.min.js"></script>
+
+<!-- Pagevel ugins -->
+<script src="https://liwru.s3.amazonaws.comvendor/datatables/jquery.dataTables.min.js"></script>
+<script src="https://liwru.s3.amazonaws.comvendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Pagevel stom scripts -->
+<script src="https://liwru.s3.amazonaws.comjs/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>
