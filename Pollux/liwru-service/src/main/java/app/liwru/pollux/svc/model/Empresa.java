@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Empresa {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idEmpresa;
     private String rucEmpresa;

@@ -40,12 +40,13 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form  method="POST" >
+                <form  method="POST"  th:action="@{/usuarios/save}" th:object="${usuario}">
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">{nombre del usuario}</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" th:text="*{nombreUsuario +' '+ apellidoUsuario}"> </h6>
                                 </div>
                             </div>
                         </div>
@@ -55,25 +56,32 @@
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="idUsuario" name="idUsuario"
+                                               value=""  th:field="*{idUsuario}" hidden>
                                         <a>Nombres</a>
                                         <input type="text" class="form-control form-control-user" id="nombres" name="nombres"
-                                               value=""  placeholder="LUIS ENRIQUE">
+                                               value=""  th:field="*{nombreUsuario}">
                                     </div>
                                     <div class="form-group">
                                         <a>Apellidos</a>
                                         <input type="text" class="form-control form-control-user" id="apellidos" name="apellidos"
-                                               value="" placeholder="BALDEÓN RONDÁN">
+                                               value="" th:field="*{apellidoUsuario}">
                                     </div>
                                     <div class="form-group">
                                         <a>Email</a>
                                         <input type="text" class="form-control form-control-user" id="email" name="email"
-                                               value="" placeholder="luis.baldeon@bcp.com.pe">
+                                               value="" th:field="*{emailUsuario}">
                                     </div>
                                     <div class="form-group">
                                         <a>Tipo Documento</a>
-                                        <input type="text" class="form-control form-control-user" id="tipodoc" name="tipodoc"
-                                               value="" placeholder="DNI">
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{idTipoDoc}">
+                                            <option th:each="tipoDoc:${tipoDocumentos}"
+                                                    th:value="${tipoDoc.idTipoDoc}"
+                                                    th:text="${tipoDoc.descripcion}"
+                                                    th:selected="${tipoDoc.idTipoDoc}"></option>
+                                        </select>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -83,12 +91,16 @@
                                     <div class="form-group">
                                         <a>Numero Documento</a>
                                         <input type="text" class="form-control form-control-user" id="nrodoc" name="nrodoc"
-                                               value="" placeholder="70108270">
+                                               value="" th:field="*{numeroDocUsuario}">
                                     </div>
                                     <div class="form-group">
                                         <a>Rol</a>
-                                        <input type="text" class="form-control form-control-user" id="rol" name="rol"
-                                               value="" placeholder="ATENCIÓN DE INDICENCIAS">
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{idRolUsuario}">
+                                            <option th:each="ro:${roles}"
+                                                    th:value="${ro.idRolUsuario}"
+                                                    th:text="${ro.descripcion}"
+                                                    th:selected="${ro.idRolUsuario}"></option>
+                                        </select>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">

@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.ApoderadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApoderadoService implements CrudService<Apoderado, Integer> {
@@ -15,29 +16,27 @@ public class ApoderadoService implements CrudService<Apoderado, Integer> {
         this.apoderadoRepository = apoderadoRepository;
     }
 
+
     @Override
-    public void create(Apoderado apoderado) {
-        apoderadoRepository.save(apoderado);
+    public Optional<Apoderado> findById(Integer integer) {
+        return apoderadoRepository.findById(integer);
     }
 
     @Override
-    public void update(Apoderado apoderado) {
-        apoderadoRepository.save(apoderado);
+    public Optional<List<Apoderado>> findAll() {
+        return Optional.of(apoderadoRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        apoderadoRepository.deleteById(id);
+    public Apoderado saveOrUpdate(Apoderado apoderado) {
+        return apoderadoRepository.save(apoderado);
     }
 
     @Override
-    public Apoderado findById(Integer id) {
-        return apoderadoRepository.findById(id)
-                .orElse(null);
-    }
-
-    @Override
-    public List<Apoderado> findAll() {
-        return apoderadoRepository.findAll();
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((apoderado->{
+            apoderadoRepository.delete(apoderado);
+            return true;
+        })).orElse(false);
     }
 }

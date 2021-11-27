@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.DepartamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartamentoService implements CrudService<Departamento, Integer> {
@@ -16,28 +17,25 @@ public class DepartamentoService implements CrudService<Departamento, Integer> {
     }
 
     @Override
-    public void create(Departamento departamento) {
-        departamentoRepository.save(departamento);
+    public Optional<Departamento> findById(Integer integer) {
+        return departamentoRepository.findById(integer);
     }
 
     @Override
-    public void update(Departamento departamento) {
-        departamentoRepository.save(departamento);
+    public Optional<List<Departamento>> findAll() {
+        return Optional.of(departamentoRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        departamentoRepository.deleteById(id);
+    public Departamento saveOrUpdate(Departamento departamento) {
+        return departamentoRepository.save(departamento);
     }
 
     @Override
-    public Departamento findById(Integer id) {
-        return departamentoRepository.findById(id)
-                .orElse(null);
-    }
-
-    @Override
-    public List<Departamento> findAll() {
-        return departamentoRepository.findAll();
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((departamento->{
+            departamentoRepository.delete(departamento);
+            return true;
+        })).orElse(false);
     }
 }

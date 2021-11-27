@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,13 +11,13 @@
 
   <title>Estados</title>
 
-  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet"
+        type="text/css">
   <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
   <!-- Custom styles for this page -->
   <link th:href="@{https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
 
 </head>
-
 
 
 <body id="page-top">
@@ -39,54 +39,51 @@
       <div id="estados" class="container-fluid">
 
 
-        <!-- Page Heading -->       <!-- Page Heading -->
-<!--        <div class="card-body" style="text-align: right" >-->
-<!--          <button type="button" class="btn btn-success">Agregar</button>-->
-<!--          <button type="button" class="btn btn-primary">Editar</button>-->
-<!--          <button type="button" class="btn btn-danger">Eliminar</button>-->
-<!--        </div>-->
+        <!-- Page Heading -->
+        <div class="card-body" style="text-align: right">
+          <a  th:href="@{/ajustes/estado/create}" class="btn btn-success">Agregar</a>
+        </div>
+        <!--        <div class="card-body" style="text-align: right" >-->
+        <!--          <button type="button" class="btn btn-success">Agregar</button>-->
+        <!--          <button type="button" class="btn btn-primary">Editar</button>-->
+        <!--          <button type="button" class="btn btn-danger">Eliminar</button>-->
+        <!--        </div>-->
 
 
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">LISTA DE ESTADOS</h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Estado</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td class="border-left-primary">1</td>
-                  <td>RECIBIDO</td>
-
-                </tr>
-
-                <tr>
-                  <td class="border-left-warning">2</td>
-                  <td>EN PROGRESO</td>
-                </tr>
-
-                <tr>
-                  <td class="border-left-success">3</td>
-                  <td>RESUELTO</td>
-
-                </tr>
-
-                <tr>
-                  <td class="border-left-danger">4</td>
-                  <td>RECHAZADO</td>
-
-                </tr>
-
-                </tbody>
-              </table>
+        <div class="card shadow mb-4" th:switch="estados">
+          <div th:case="*">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">LISTA DE ESTADOS</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Estado</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each=" esta : ${estados} ">
+                    <th:block th:switch="${esta.estadoDescripcion}">
+                    <td class="border-left-primary" th:case="'Recibidas'" th:text="${esta.idEstado}">
+                    </td>
+                    <td class="border-left-warning" th:case="'En proceso'" th:text="${esta.idEstado}">
+                    </td>
+                    <td class="border-left-success" th:case="'Resuelta'" th:text="${esta.idEstado}">
+                    </td>
+                    <td class="border-left-danger" th:case="'Rechazada'" th:text="${esta.idEstado}">
+                    </td>
+                    <td class="border-left-dark" th:case="'Improcedente'" th:text="${esta.idEstado}">
+                    </td>
+                    </th:block>
+                    <td th:text="${esta.estadoDescripcion}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -107,7 +104,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
 </a>
-
 
 
 <!-- Bootstrap core JavaScript-->

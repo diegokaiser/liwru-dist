@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.ProvinciaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProvinciaService implements CrudService<Provincia, Integer> {
@@ -15,29 +16,27 @@ public class ProvinciaService implements CrudService<Provincia, Integer> {
         this.provinciaRepository = provinciaRepository;
     }
 
+
     @Override
-    public void create(Provincia provincia) {
-        provinciaRepository.save(provincia);
+    public Optional<Provincia> findById(Integer integer) {
+        return provinciaRepository.findById(integer);
     }
 
     @Override
-    public void update(Provincia provincia) {
-        provinciaRepository.save(provincia);
+    public Optional<List<Provincia>> findAll() {
+        return Optional.of(provinciaRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        provinciaRepository.deleteById(id);
+    public Provincia saveOrUpdate(Provincia provincia) {
+        return provinciaRepository.save(provincia);
     }
 
     @Override
-    public Provincia findById(Integer id) {
-        return provinciaRepository.findById(id)
-                .orElse(null);
-    }
-
-    @Override
-    public List<Provincia> findAll() {
-        return provinciaRepository.findAll();
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((provincia->{
+            provinciaRepository.delete(provincia);
+            return true;
+        })).orElse(false);
     }
 }

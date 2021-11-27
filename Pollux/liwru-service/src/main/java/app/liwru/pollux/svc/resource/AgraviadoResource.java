@@ -1,17 +1,14 @@
 package app.liwru.pollux.svc.resource;
 
-import app.liwru.pollux.svc.model.Distrito;
-import app.liwru.pollux.svc.repository.DistritoRepository;
+import app.liwru.pollux.svc.model.Agraviado;
+import app.liwru.pollux.svc.model.Usuario;
 import app.liwru.pollux.svc.service.AgraviadoService;
-import app.liwru.pollux.svc.service.CrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/api/agraviados")
 @RestController
@@ -24,43 +21,38 @@ public class AgraviadoResource {
     }
 
     @GetMapping
-    public ResponseEntity getAgraviados() {
-        return new ResponseEntity<>(agraviadoService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Agraviado>> getAll() {
+        return agraviadoService.findAll()
+                .map(agraviados -> agraviados.isEmpty() ? new ResponseEntity(HttpStatus.NO_CONTENT)
+                        : new ResponseEntity(agraviados, HttpStatus.OK))
+                .orElse(new ResponseEntity(HttpStatus.NO_CONTENT));
     }
 
-    @Service
-    public static class DistritoService implements CrudService<Distrito, Integer> {
+    @GetMapping("/{id}")
+    public ResponseEntity<Agraviado> getAgraviado(@PathVariable int id) {
+        return agraviadoService.findById( id)
+                .map(usuario -> new ResponseEntity<>(usuario, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
-        private final DistritoRepository distritoRepository;
+    @PostMapping
+    public ResponseEntity<Agraviado> save(@RequestBody Agraviado user) {
+        return new ResponseEntity<>(agraviadoService.saveOrUpdate(user), HttpStatus.CREATED);
+    }
+    @PutMapping
+    public ResponseEntity<Agraviado> update(@RequestBody Agraviado user) {
+        user.setDistrito(null);
+        return new ResponseEntity<>(agraviadoService.saveOrUpdate(user), HttpStatus.OK);
+    }
 
-        public DistritoService(DistritoRepository distritoRepository) {
-            this.distritoRepository = distritoRepository;
-        }
+    @DeleteMapping("/deleteAgraviado/{id}")
+    public ResponseEntity delete(@PathVariable int id) {
 
-        @Override
-        public void create(Distrito distrito) {
-            distritoRepository.save(distrito);
-        }
-
-        @Override
-        public void update(Distrito distrito) {
-            distritoRepository.save(distrito);
-        }
-
-        @Override
-        public void delete(Integer id) {
-            distritoRepository.deleteById(id);
-        }
-
-        @Override
-        public Distrito findById(Integer id) {
-            return distritoRepository.findById(id)
-                    .orElse(null);
-        }
-
-        @Override
-        public List<Distrito> findAll() {
-            return distritoRepository.findAll();
+        if (agraviadoService.logicDelete(id)) {
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
+    
 }

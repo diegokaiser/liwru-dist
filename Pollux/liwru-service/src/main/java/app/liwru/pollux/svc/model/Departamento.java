@@ -3,10 +3,7 @@ package app.liwru.pollux.svc.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Departamento {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idDepartamento;
     private String nombre;

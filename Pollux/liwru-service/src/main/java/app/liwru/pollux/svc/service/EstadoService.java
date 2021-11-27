@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.EstadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EstadoService implements CrudService<Estado, Integer> {
@@ -15,29 +16,30 @@ public class EstadoService implements CrudService<Estado, Integer> {
         this.estadoRepository = estadoRepository;
     }
 
+
     @Override
-    public void create(Estado estado) {
-        estadoRepository.save(estado);
+    public Optional<Estado> findById(Integer integer) {
+        return estadoRepository.findById(integer);
     }
 
     @Override
-    public void update(Estado estado) {
-        estadoRepository.save(estado);
+    public Optional<List<Estado>> findAll() {
+        return Optional.of(estadoRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        estadoRepository.deleteById(id);
+    public Estado saveOrUpdate(Estado estado) {
+        return estadoRepository.save(estado);
     }
 
     @Override
-    public Estado findById(Integer id) {
-        return estadoRepository.findById(id)
-                .orElse(null);
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((estado->{
+            estadoRepository.delete(estado);
+            return true;
+        })).orElse(false);
     }
 
-    @Override
-    public List<Estado> findAll() {
-        return estadoRepository.findAll();
-    }
+
+
 }

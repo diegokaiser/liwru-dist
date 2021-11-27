@@ -39,56 +39,74 @@
         <!-- Page Heading -->
 
         <div class="card-body" style="text-align: right">
-          <button type="button" class="btn btn-success">Agregar</button>
+          <a  class="btn btn-success"   th:href="@{usuarios/create}" >Agregar</a>
         </div>
 
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">USUARIOS</h6>
-          </div>
+        <div th:switch="usuarios" class="card shadow mb-4">
+          <div th:case="*">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">USUARIOS</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Usuario</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each=" usu : ${usuarios} ">
+                    <th:block th:switch="${usu.estado}">
+                      <td class="border-left-danger" th:case="'0'" th:text="${usu.idUsuario}"></td>
+                      <td class="border-left-success" th:case="'1'" th:text="${usu.idUsuario}"></td>
+                    </th:block>
+                    <td th:text="${usu.nombreUsuario}"></td>
+                    <td th:text="${usu.apellidoUsuario}"></td>
+                    <td th:text="${usu.emailUsuario}"></td>
+                    <td th:text="${usu.rol.descripcion}"></td>
+                    <td th:switch="${usu.estado}">
+                      <div th:case="1">
+                        Activo
+                      </div>
+                      <div th:case="0">
+                        Innactivo
+                      </div>
+                    </td>
+                    <div th:switch="${usu.estado}">
+                      <div th:case="1">
+                        <td><a th:href="@{editar/usuario/{id} (id = ${usu.idUsuario}) }" class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Editar usuario">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{desactivarUsuario/{id} (id = ${usu.idUsuario}) }"
+                             class="btn btn-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Desactivar usuario">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </div>
+                      <div th:case="0">
+                        <td><a th:href="@{editar/usuario/{id} (id = ${usu.idUsuario}) }"class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Editar usuario">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{activarUsuario/{id} (id = ${usu.idUsuario}) }"
+                             class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Activar usuario">
+                            <i class="fas fa-trash-restore"></i>
+                          </a>
+                        </td>
+                      </div>
+                    </div>
 
-
-          <div class="card-body" th:switch="usuarios">
-            <div class="table-responsive" th:case="*">
-              <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Usuario</th>
-                  <th>Apellido</th>
-                  <th>Email</th>
-                  <th>Rol</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="usu : ${usuarios}">
-                  <th:block th:switch="${usu.estado}">
-                    <td class="border-left-danger" th:case="'0'" th:text="${usu.idUsuario}"></td>
-                    <td class="border-left-success" th:case="'1'" th:text="${usu.idUsuario}"></td>
-                  </th:block>
-                  <td th:text="${usu.nombreUsuario}"></td>
-                  <td th:text="${usu.apellidoUsuario}"></td>
-                  <td th:text="${usu.emailUsuario}"></td>
-                  <td th:text="${usu.rol.descripcion}"></td>
-                  <th:block th:switch="${usu.estado}">
-                    <td th:case="'0'">Inactivo</td>
-                    <td th:case="'1'">Activo</td>
-                  </th:block>
-                  <td>
-                    <a th:href="@{/usuarios/usuario/{idUsuario}(idUsuario=${usu.idUsuario})}" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a th:href="@{/usuarios/usuario/{idUsuario}(idUsuario=${usu.idUsuario})}" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                </tbody>
-              </table>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

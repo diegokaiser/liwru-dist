@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.TipoDocumentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TipoDocumentoService implements CrudService<TipoDocumento, Integer> {
@@ -15,29 +16,27 @@ public class TipoDocumentoService implements CrudService<TipoDocumento, Integer>
         this.tipoDocumentoRepository = tipoDocumentoRepository;
     }
 
+
     @Override
-    public void create(TipoDocumento tipoDocumento) {
-        tipoDocumentoRepository.save(tipoDocumento);
+    public Optional<TipoDocumento> findById(Integer integer) {
+        return tipoDocumentoRepository.findById(integer);
     }
 
     @Override
-    public void update(TipoDocumento tipoDocumento) {
-        tipoDocumentoRepository.save(tipoDocumento);
+    public Optional<List<TipoDocumento>> findAll() {
+        return Optional.of(tipoDocumentoRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        tipoDocumentoRepository.deleteById(id);
+    public TipoDocumento saveOrUpdate(TipoDocumento tipoDocumento) {
+        return tipoDocumentoRepository.save(tipoDocumento);
     }
 
     @Override
-    public TipoDocumento findById(Integer id) {
-        return tipoDocumentoRepository.findById(id)
-                .orElse(null);
-    }
-
-    @Override
-    public List<TipoDocumento> findAll() {
-        return tipoDocumentoRepository.findAll();
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((tipoDocumento->{
+            tipoDocumentoRepository.delete(tipoDocumento);
+            return true;
+        })).orElse(false);
     }
 }

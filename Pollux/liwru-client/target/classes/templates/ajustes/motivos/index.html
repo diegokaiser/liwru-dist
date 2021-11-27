@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Motivos</title>
+  <title>Motivos</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom styles for this page -->
-    <link href="https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-
 
 
 <body id="page-top">
@@ -27,225 +26,101 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-    <div th:replace="/fragments/sidebar :: sidebar"></div>
+  <div th:replace="/fragments/sidebar :: sidebar"></div>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-            <div th:replace="/fragments/topbar :: topbar"></div>
-            <!-- Begin Page Content -->
-            <div id="sede" class="container-fluid">
+      <div th:replace="/fragments/topbar :: topbar"></div>
+      <!-- Begin Page Content -->
+      <div id="sede" class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="card-body" style="text-align: right" >
-                    <button type="button" class="btn btn-success">Agregar</button>
-<!--                    <button type="button" class="btn btn-primary">Editar</button>-->
-<!--                    <button type="button" class="btn btn-danger">Eliminar</button>-->
-                </div>
-
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">LISTA DE MOTIVOS</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Codigo</th>
-                                    <th>Descripción</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Cancelación o anulación del pedido sin previo aviso</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bloqueo de tarjeta de débito no solicitado</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>3</td>
-                                    <td>Bloqueo de tarjeta de crédito no solicitado</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>4</td>
-                                    <td>Consumo o retiro no reconocido en la tarjeta de débito/crédito </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>5</td>
-                                    <td>No recepción de estado de cuenta</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>6</td>
-                                    <td>Fallas en cajero automático</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>7</td>
-                                    <td>Descuentos injustificados</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>8</td>
-                                    <td>Impedimento injustificado de ingreso a la sede o sucursal</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>9</td>
-                                    <td>Trato descortés</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10</td>
-                                    <td>Negativa a identificarse</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>11</td>
-                                    <td>Informacion insuficiente Y/O errónea</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>12</td>
-                                    <td>Demora en la atención</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>13</td>
-                                    <td>Otros</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- /.container-fluid -->
-
+        <!-- Page Heading -->
+        <div class="card-body" style="text-align: right">
+          <a th:href="@{/ajustes/motivos/create}"  class="btn btn-success">Agregar</a>
+          <!--                    <button type="button" class="btn btn-primary">Editar</button>-->
+          <!--                    <button type="button" class="btn btn-danger">Eliminar</button>-->
         </div>
-        <!-- End of Main Content -->
-        <div th:replace="/fragments/footer :: footer"></div>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4" th:switch="usuarios">
+          <div th:case="*">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">LISTA DE MOTIVOS</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each=" moti : ${motivos} ">
+                    <th:block th:switch="${moti.estadoMotivo}">
+                      <td class="border-left-danger" th:case="'0'" th:text="${moti.idMotivo}"></td>
+                      <td class="border-left-success" th:case="'1'" th:text="${moti.idMotivo}"></td>
+                    </th:block>
+
+                    <td th:text="${moti.estadoDescripcion}"></td>
+                    <td th:switch="${moti.estadoMotivo}">
+                      <div th:case="1">
+                        ACTIVO
+                      </div>
+                      <div th:case="0">
+                        INACTIVO
+                      </div>
+                    </td>
+
+                    <div th:switch="${moti.estadoMotivo}">
+                      <div th:case="1">
+                        <td><a th:href="@{/ajustes/editar/motivo/{id} (id = ${moti.idMotivo}) }" class="btn btn-primary btn-circle">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{desactivarMotivos/{id} (id = ${moti.idMotivo}) }"
+                             class="btn btn-danger btn-circle">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </div>
+                      <div th:case="0">
+                        <td><a th:href="@{/ajustes/editar/motivo/{id} (id = ${moti.idMotivo}) }" class="btn btn-primary btn-circle">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{activarMotivos/{id} (id = ${moti.idMotivo}) }"
+                             class="btn btn-success btn-circle">
+                            <i class="fas fa-trash-restore"></i>
+                          </a>
+                        </td>
+                      </div>
+                    </div>
+                  </tr>
+
+                  <tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Main Content -->
+    <div th:replace="/fragments/footer :: footer"></div>
+  </div>
+  <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->

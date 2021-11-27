@@ -21,7 +21,9 @@ public class UsuarioDTO {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private LocalDate deletedAt;
+    private Integer idRolUsuario;
+    private Integer idTipoDoc;
     private RolDTO rol;
     private TipoDocumentoDTO tipoDocumento;
-
+    private String token;
 }

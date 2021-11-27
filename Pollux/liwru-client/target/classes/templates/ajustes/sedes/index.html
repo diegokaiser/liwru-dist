@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -12,13 +12,13 @@
   <title>Sedes</title>
 
   <!-- Custom fonts for this template-->
-  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet"
+        type="text/css">
   <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
   <!-- Custom styles for this page -->
   <link th:href="@{https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
 
 </head>
-
 
 
 <body id="page-top">
@@ -40,114 +40,77 @@
       <div id="sede" class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="card-body" style="text-align: right" >
-          <button type="button" class="btn btn-success">Agregar</button>
-<!--          <button type="button" class="btn btn-primary">Editar</button>-->
-<!--          <button type="button" class="btn btn-danger">Eliminar</button>-->
+        <div class="card-body" style="text-align: right">
+          <a  th:href="@{/ajustes/sede/create}" class="btn btn-success">Agregar</a>
+          <!--          <button type="button" class="btn btn-primary">Editar</button>-->
+          <!--          <button type="button" class="btn btn-danger">Eliminar</button>-->
         </div>
 
 
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">LISTA DE SEDES</h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Dirección</th>
-                  <th>Telefono</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td class="border-left-success">1</td>
-                  <td><a th:href="@{/editar/sede}">BCP Los Robles</a></td>
-                  <td>Av. dos de Mayo 1199</td>
-                  <td>(01) 3765085</td>
-                  <td>ACTIVO</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
+        <div class="card shadow mb-4" th:switch="sedes">
+          <div th:case="*">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">LISTA DE SEDES</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each=" sed : ${sedes} ">
+                    <th:block th:switch="${sed.estado}">
+                      <td class="border-left-danger" th:case="'0'" th:text="${sed.idSede}"></td>
+                      <td class="border-left-success" th:case="'1'" th:text="${sed.idSede}"></td>
+                    </th:block>
+                    <td><a th:href="@{/editar/sede}" th:text="${sed.nombre}"></a></td>
+                    <td th:text="${sed.direccion}"></td>
+                    <td th:text="${sed.telefono}"></td>
+                    <td th:switch="${sed.estado}">
+                      <div th:case="1">
+                        ACTIVO
+                      </div>
+                      <div th:case="0">
+                        INACTIVO
+                      </div>
+                    </td>
 
-                <tr>
-                  <td class="border-left-success">2</td>
-                  <td>BCP 2 de Mayo</td>
-                  <td>Av. dos de Mayo 1574</td>
-                  <td>(01) 3765085</td>
-                  <td>ACTIVO</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td class="border-left-success">3</td>
-                  <td>BCP Caminos del Inca</td>
-                  <td>Punta Pejerrey, Santiago de Surco 15038</td>
-                  <td>(01) 3119898</td>
-                  <td >ACTIVO</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
+                    <div th:switch="${sed.estado}">
+                      <div th:case="1">
+                        <td><a  th:href="@{/ajustes/editar/sede/{id} (id = ${sed.idSede}) }"  class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Editar sede">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{desactivarSede/{id} (id = ${sed.idSede}) }" class="btn btn-danger btn-circle" data-toggle="tooltip" data-placement="top" title="Desactivar sede">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </div>
+                      <div th:case="0">
+                        <td><a th:href="@{/ajustes/editar/sede/{id} (id = ${sed.idSede}) }"class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Editar sede">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                          <a th:href="@{activarSede/{id} (id = ${sed.idSede}) }" class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Activar sede">
+                            <i class="fas fa-trash-restore"></i>
+                          </a>
+                        </td>
+                      </div>
+                    </div>
+                  </tr>
 
-                <tr>
-                  <td class="border-left-success">4</td>
-                  <td>BCP Morelli (Rambla)</td>
-                  <td>C. Morelli 185, San Borja 15036</td>
-                  <td>(01) 4273136</td>
-                  <td>ACTIVO</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td class="border-left-success">5</td>
-                  <td>BCP San Luis</td>
-                  <td>Av. San Luis 1975, San Luis 15037</td>
-                  <td>(01) 4273136</td>
-                  <td>ACTIVO</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-circle">
-                      <i class="fas fa-check"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

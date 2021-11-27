@@ -40,12 +40,17 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form  method="POST" >
+                <form  method="POST" th:action="@{/ajustes/sede/save}" th:object="${sede}">
                     <div class="row">
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">{nombre de sede}</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" th:text="*{nombre}"></h6>
+
+                                    <input type="text" class="form-control form-control-user" id="idsede1" name="sede"
+                                           value=""  th:field="*{idSede}" hidden>
+                                    <input type="text" class="form-control form-control-user" id="fecha" name="sede"
+                                           value=""  th:field="*{createdAt}" hidden>
                                 </div>
                             </div>
                         </div>
@@ -56,24 +61,29 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <a>Sede N°</a>
-                                        <input type="text" class="form-control form-control-user" id="idsede" name="sede"
-                                               value=""  placeholder="1">
+
+
+                                        <input type="text" class="form-control form-control-user" id="idsede2" name="sede"
+                                               value=""  th:field="*{idSede}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <a>Nombre Sede</a>
                                         <input type="text" class="form-control form-control-user" id="nombre" name="nombre"
-                                               value="" placeholder="BCP Los robles">
+                                               value=""  th:field="*{nombre}">
                                     </div>
                                     <div class="form-group">
                                         <a>Dirección</a>
                                         <input type="text" class="form-control form-control-user" id="direccion" name="direccion"
-                                               value="" placeholder="Av. 2 de Mayo 1199">
+                                               value=""  th:field="*{direccion}">
                                     </div>
                                     <div class="form-group">
                                         <a>Estado</a>
-                                        <input type="text" class="form-control form-control-user" id="estado" name="estado"
-                                               value="" placeholder="1">
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{estado}">
+                                            <option th:value="0" th:text="INACTIVO"></option>
+                                            <option th:value="1" th:text="ACTIVO"></option>
+                                        </select>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -81,14 +91,23 @@
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <a>Empresa</a>
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{idEmpresa}">
+                                            <option th:each="emp:${empresa}"
+                                                    th:value="${emp.idEmpresa}"
+                                                    th:text="${emp.descripcionEmpresa}"
+                                                    th:selected="${emp.idEmpresa}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <a>Gerente</a>
                                         <input type="text" class="form-control form-control-user" id="gerente" name="gerente"
-                                               value="" placeholder="JUAN MANUEL POLANCO CARMONA">
+                                               value=""  th:field="*{gerente}">
                                     </div>
                                     <div class="form-group">
                                         <a>Teléfono</a>
                                         <input type="text" class="form-control form-control-user" id="telefono" name="telefono"
-                                               value="" placeholder="(01)3765085">
+                                               value=""  th:field="*{telefono}">
                                     </div>
                                     <div class="row">
                                         <div class="col-6">

@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Agraviado {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idAgraviado;
     private String clienteNombre;
@@ -24,13 +25,24 @@ public class Agraviado {
     private String clienteNroDoc;
     private Integer estatusEdad;
     private Integer estado;
+    private Integer idTipoDoc;
+    private Integer idApoderado;
+    private Integer idDepartamento;
+    private Integer idProvincia;
+    private Integer idDistrito;
+
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "idDistrito", nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "idDistrito", insertable = false, updatable = false)
     @JsonIgnoreProperties("idDistrito")
     private Distrito distrito;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "idTipoDoc",referencedColumnName = "idTipoDoc", insertable = false, updatable = false)
+    @JsonIgnoreProperties("idTipoDoc")
+    private TipoDocumento tipoDocumento;
 
 
 }

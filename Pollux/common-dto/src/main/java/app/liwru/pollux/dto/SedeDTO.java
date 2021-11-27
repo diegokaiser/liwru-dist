@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SedeDTO {
+public class  SedeDTO {
 
 
     private Integer idSede;
@@ -19,9 +19,12 @@ public class SedeDTO {
     private Integer estado;
     private String gerente;
     private String telefono;
+    private Integer idEmpresa;
     private LocalDate createdAt;
     private LocalDate updateAt;
     private LocalDate deletedAt;
     private EmpresaDTO empresa;
+
+
 
 }

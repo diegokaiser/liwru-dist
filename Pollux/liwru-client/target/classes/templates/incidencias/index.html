@@ -35,8 +35,6 @@
       <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="card-body" style="text-align: right">
-        </div>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -46,7 +44,7 @@
           <div class="card-body" th:switch="incidencias">
             <div class="table-responsive" th:case="*" >
 
-              <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Codigo</th>
@@ -63,16 +61,20 @@
 
                 <tbody>
                   <tr th:each=" inci : ${incidencias} ">
+
                     <th:block th:switch="${inci.estado.estadoDescripcion}">
-                      <td class="border-left-primary" th:case="'recibida'" th:text="${inci.codigoIncidencia}">
+                      <td class="border-left-primary" th:case="'Recibidas'" th:text="${inci.codigoIncidencia}">
                       </td>
-                      <td class="border-left-warning" th:case="'en proceso'" th:text="${inci.codigoIncidencia}">
+                      <td class="border-left-warning" th:case="'En proceso'" th:text="${inci.codigoIncidencia}">
                       </td>
-                      <td class="border-left-success" th:case="'resuelta'" th:text="${inci.codigoIncidencia}">
+                      <td class="border-left-success" th:case="'Resuelta'" th:text="${inci.codigoIncidencia}">
                       </td>
-                      <td class="border-left-danger" th:case="'rechazada'" th:text="${inci.codigoIncidencia}">
+                      <td class="border-left-danger" th:case="'Rechazada'" th:text="${inci.codigoIncidencia}">
+                      </td>
+                      <td class="border-left-dark" th:case="'Improcedente'" th:text="${inci.codigoIncidencia}">
                       </td>
                     </th:block>
+
                     <td th:inline="text">
                       [[${inci.fechaIncidencia}]]
                     </td>
@@ -80,18 +82,18 @@
                     <td th:text="${inci.sede.nombre}"></td>
                     <td th:text="${inci.tipoIncidencia.descripcion}"></td>
                     <td th:inline="text">
-                      <a th:href="@{/agraviados/agraviado/{idAgraviado}(idAgraviado=${inci.agraviado.idAgraviado})}">
-                        [[${inci.agraviado.clienteApePat + inci.agraviado.clienteApeMat + ', ' + inci.agraviado.clienteNombre}]]
+                      <a th:href="@{/editar/agraviado/{id}(id=${inci.idAgraviado})}">
+                        [[${inci.agraviado.clienteApePat + ' ' + inci.agraviado.clienteApeMat + ', ' + inci.agraviado.clienteNombre}]]
                       </a>
                     </td>
                     <td th:inline="text">
-                      <a th:href="@{/usuarios/usuario/{idUsuario}(idUsuario=${inci.usuario.idUsuario})}">
+                      <a th:href="@{/editar/usuario/{id}(id=${inci.idUsuario})}">
                         [[${inci.usuario.apellidoUsuario + ', ' + inci.usuario.nombreUsuario}]]
                       </a>
                     </td>
                     <td th:text="${inci.estado.estadoDescripcion}"></td>
                     <td>
-                      <a th:href="@{/incidencias/incidencia/{idIncidencia}(idIncidencia=${inci.codigoIncidencia})}" class="btn btn-success btn-circle">
+                      <a th:href="@{/incidencias/editar/{idIncidencia}(idIncidencia=${inci.idIncidencia})}" class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Atender incidencia">
                         <i class="fas fa-pen"></i>
                       </a>
                     </td>

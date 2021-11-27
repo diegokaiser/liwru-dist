@@ -40,12 +40,12 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form  method="POST" >
+                <form  method="POST"  th:object="${agraviado}">
                 <div class="row">
                     <div class="col-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">{nombre del agraviado}</h6>
+                                <h6 class="m-0 font-weight-bold text-primary" th:text="*{clienteNombre +' '+ clienteApePat+' '+clienteApeMat  }"></h6>
                             </div>
                         </div>
                     </div>
@@ -57,32 +57,32 @@
                                 <div class="form-group">
                                     <a>Nombres</a>
                                     <input type="text" class="form-control form-control-user" id="nombres" name="nombres"
-                                           value=""  placeholder="CESAR AUGUSTO" readonly>
+                                           value=""  th:field="*{clienteNombre}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Apellido Materno</a>
                                     <input type="text" class="form-control form-control-user" id="apemat" name="apemat"
-                                           value="" placeholder="CHIAPPE" readonly>
+                                           value="" th:field="*{clienteApeMat}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Apellido Paterno</a>
                                     <input type="text" class="form-control form-control-user" id="apepat" name="apepat"
-                                           value="" placeholder="ZAMBRANO" readonly>
+                                           value="" th:field="*{clienteApePat}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Email</a>
                                     <input type="text" class="form-control form-control-user" id="email" name="email"
-                                           value="" placeholder="CACZ0994@outlook.com" readonly>
+                                           value="" th:field="*{clienteEmail}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Teléfono</a>
                                     <input type="text" class="form-control form-control-user" id="telefono" name="telefono"
-                                           value="" placeholder="557-0083" readonly>
+                                           value="" th:field="*{clienteTelefono}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Dirección</a>
                                     <input type="text" class="form-control form-control-user" id="direccion" name="direccion"
-                                           value="" placeholder="CL Las Cerezas 148 0437 019 Urb. Ur Ur. Las Alborada Et.2" readonly>
+                                           value="" th:field="*{clienteDireccion}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -93,34 +93,34 @@
                                 <div class="form-group">
                                     <a>Tipo Documento</a>
                                     <input type="text" class="form-control form-control-user" id="tipodoc" name="tipodoc"
-                                           value="" placeholder="RUC" readonly>
+                                           value="" th:field="*{tipoDocumento.descripcion}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Numero Documento</a>
                                     <input type="text" class="form-control form-control-user" id="nrodoc" name="nrodoc"
-                                           value="" placeholder="20543248984" readonly>
+                                           value="" th:field="*{clienteNroDoc}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Departamento</a>
                                     <input type="text" class="form-control form-control-user" id="departamento" name="departamento"
-                                           value="" placeholder="Lima" readonly>
+                                           value="" th:field="*{distrito.provincia.departamento.nombre}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Provincia</a>
                                     <input type="text" class="form-control form-control-user" id="provincia" name="provincia"
-                                           value="" placeholder="Lima" readonly>
+                                           value="" th:field="*{distrito.provincia.nombre}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <a>Distrito</a>
                                     <input type="text" class="form-control form-control-user" id="distrito" name="distrito"
-                                           value="" placeholder="COMAS" readonly>
+                                           value="" th:field="*{distrito.nombre}" readonly>
                                 </div>
                                 <div class="row">
                                     <div class="col-4">
 
                                     </div>
                                     <div class="col-4">
-                                        <input type="button" class="btn btn-danger btn-user btn-block" value="Volver">
+                                        <a href="../../agraviados" class="btn btn-danger btn-user btn-block">Volver</a>
                                     </div>
                                     <div class="col-4">
 
@@ -135,10 +135,10 @@
                     <div class="col-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">{incidencias}</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Incidencias</h6>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
+                            <div class="card-body" th:switch="incidenciasAgraviados">
+                                <div class="table-responsive"  th:case="*">
                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
@@ -147,12 +147,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="border-left-primary">
-                                                BCP-000001
+                                        <tr th:each="inciAgra : ${incidenciasAgraviados}">
+                                            <td class="border-left-primary" th:text="${inciAgra.codigoIncidencia} ">
                                             </td>
-                                            <td>
-                                                BALDEÓN RONDÁN, LUIS ENRIQUE
+                                            <td th:text="${inciAgra.usuario.nombreUsuario}">
+
                                             </td>
                                         </tr>
                                         </tbody>

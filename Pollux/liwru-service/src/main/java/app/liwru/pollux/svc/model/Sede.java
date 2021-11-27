@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Sede {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idSede;
     private String nombre;
@@ -23,10 +24,12 @@ public class Sede {
     private LocalDate createdAt;
     private LocalDate updateAt;
     private LocalDate deletedAt;
+    private Integer idEmpresa;
 
-    @ManyToOne
-    @JoinColumn(name = "idEmpresa", nullable = false, updatable = false)
-    @JsonIgnoreProperties("idEmpresa")
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "idEmpresa",referencedColumnName = "idEmpresa",insertable = false, updatable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
+
 
 }

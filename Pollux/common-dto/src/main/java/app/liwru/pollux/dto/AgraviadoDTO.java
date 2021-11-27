@@ -23,6 +23,13 @@ public class AgraviadoDTO {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private DistritoDTO distrito;
+    private TipoDocumentoDTO tipoDocumento;
+
+    private Integer idTipoDoc;
+    private Integer idApoderado;
+    private Integer idDepartamento;
+    private Integer idProvincia;
+    private Integer idDistrito;
 
 
 }

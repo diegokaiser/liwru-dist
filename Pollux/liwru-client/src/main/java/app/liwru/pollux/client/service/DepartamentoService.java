@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class DepartamentoService {
 
-    private static final String PRODUCT_ENDPOINT = "https://liwru-pollux-apis.herokuapp.com/api/departamentos";
+    private static final String PRODUCT_ENDPOINT = "http://localhost:9000/api/departamentos";
     private final RestTemplate restTemplate;
 
     public DepartamentoService(RestTemplate restTemplate) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,7 +11,8 @@
 
   <title>Empresa</title>
 
-  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{https://liwru.s3.amazonaws.com/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet"
+        type="text/css">
   <link href="https://liwru.s3.amazonaws.com/css/sb-admin-2.css" rel="stylesheet">
   <!-- Custom styles for this page -->
   <link th:href="@{https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
@@ -37,23 +38,22 @@
 
 
         <!-- Page Heading -->       <!-- Page Heading -->
-        <div class="card-body" style="text-align: right" >
+        <div class="card-body" style="text-align: right">
           <button type="button" class="btn btn-primary">Editar</button>
         </div>
 
 
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DATOS DE LA EMPRESA</h6>
-          </div>
-          <div >
-          <div class="card-body">
-             <h2><strong>Nombre:</strong> BCP - Banco credito del perú</h2>
-            <h2><strong>Teléfono:</strong> (1)3119898</h2>
-            <h3><strong>RUC:</strong> 20100047218</h3>
-
-          </div>
+        <div class="card shadow mb-4" th:switch="empresas">
+          <div th:case="*">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DATOS DE LA EMPRESA</h6>
+            </div>
+            <div class="card-body" th:each=" empr : ${empresas} ">
+              <strong> Nombre: <h2 th:text="${empr.descripcionEmpresa}"></h2></strong>
+              <strong> Teléfono: <h2 th:text="${empr.telefonoEmpresa}"></h2></strong>
+              <strong> RUC: <h2 th:text="${empr.rucEmpresa}"></h2></strong>
+            </div>
           </div>
         </div>
 

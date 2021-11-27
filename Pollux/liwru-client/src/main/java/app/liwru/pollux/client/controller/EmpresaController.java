@@ -4,7 +4,9 @@ import app.liwru.pollux.client.service.EmpresaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/ajustes")
 @Controller
 public class EmpresaController {
 
@@ -19,7 +21,7 @@ public class EmpresaController {
     {
         empresaService.getEmpresas().ifPresent(empresas -> model.addAttribute("empresas", empresas));
 
-        return "empresa/index";
+        return "ajustes/empresa/index";
     }
 
 }

@@ -11,5 +11,6 @@ import lombok.*;
 public class MotivoDTO {
     private Integer idMotivo;
     private String estadoDescripcion;
+    private Integer estadoMotivo;
 
 }

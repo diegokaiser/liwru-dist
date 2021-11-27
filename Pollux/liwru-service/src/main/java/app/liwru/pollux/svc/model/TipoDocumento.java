@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class TipoDocumento {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idTipoDoc;
     private String descripcion;

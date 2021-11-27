@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Usuario {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idUsuario;
     private String nombreUsuario;
@@ -23,14 +24,18 @@ public class Usuario {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private LocalDate deletedAt;
+    @Column(name = "idRolUsuario")
+    private Integer idRolUsuario;
+    @Column(name = "idTipoDoc")
+    private Integer idTipoDoc;
 
     @ManyToOne
-    @JoinColumn(name = "idRolUsuario", nullable = false, updatable = false)
+    @JoinColumn(name = "idRolUsuario",insertable = false, nullable = false, updatable = false)
     @JsonIgnoreProperties("idRolUsuario")
     private Rol rol;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoDoc", nullable = false, updatable = false)
+    @JoinColumn(name = "idTipoDoc",insertable = false, nullable = false, updatable = false)
     @JsonIgnoreProperties("idTipoDoc")
     private TipoDocumento tipoDocumento;
 

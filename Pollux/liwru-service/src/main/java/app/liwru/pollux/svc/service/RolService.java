@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.RolRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RolService implements CrudService<Rol, Integer> {
@@ -15,29 +16,27 @@ public class RolService implements CrudService<Rol, Integer> {
         this.rolRepository = rolRepository;
     }
 
+
     @Override
-    public void create(Rol rol) {
-        rolRepository.save(rol);
+    public Optional<Rol> findById(Integer integer) {
+        return rolRepository.findById(integer);
     }
 
     @Override
-    public void update(Rol rol) {
-        rolRepository.save(rol);
+    public Optional<List<Rol>> findAll() {
+        return Optional.of(rolRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        rolRepository.deleteById(id);
+    public Rol saveOrUpdate(Rol rol) {
+        return rolRepository.save(rol);
     }
 
     @Override
-    public Rol findById(Integer id) {
-        return rolRepository.findById(id)
-                .orElse(null);
-    }
-
-    @Override
-    public List<Rol> findAll() {
-        return rolRepository.findAll();
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((rol->{
+            rolRepository.delete(rol);
+            return true;
+        })).orElse(false);
     }
 }

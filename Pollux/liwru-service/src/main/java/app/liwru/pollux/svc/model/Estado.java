@@ -2,10 +2,7 @@ package app.liwru.pollux.svc.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -13,6 +10,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Estado {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer idEstado;
     private String estadoDescripcion;

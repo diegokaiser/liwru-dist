@@ -3,10 +3,11 @@ package app.liwru.pollux.client.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
 public class AjustesController {
 
-    @GetMapping("/ajustes")
+/*    @GetMapping("/ajustes")
     public String ajustes() {
         return "ajustes/index";
     }
@@ -29,6 +30,6 @@ public class AjustesController {
     @GetMapping("/ajustes/estados")
     public String estados() {
         return "ajustes/estados/index";
-    }
+    }*/
 
 }

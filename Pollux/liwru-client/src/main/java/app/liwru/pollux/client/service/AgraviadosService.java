@@ -15,8 +15,10 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class AgraviadosService {
-
+/*
     private static final String PRODUCT_ENDPOINT = "https://liwru-pollux-apis.herokuapp.com/api/agraviados";
+*/
+    private static final String AGRAVIADOS_ENDPOINT = "http://localhost:9000/api/agraviados";
     private final RestTemplate restTemplate;
 
     public AgraviadosService(RestTemplate restTemplate) {
@@ -27,11 +29,25 @@ public class AgraviadosService {
     public Optional<List<AgraviadoDTO>> getAgraviados() {
 
         List<AgraviadoDTO> agraviados = null;
-        ResponseEntity<AgraviadoDTO[]> agraviadoResponse = restTemplate.getForEntity(PRODUCT_ENDPOINT, AgraviadoDTO[].class);
+        ResponseEntity<AgraviadoDTO[]> agraviadoResponse = restTemplate.getForEntity(AGRAVIADOS_ENDPOINT, AgraviadoDTO[].class);
         if (agraviadoResponse.getStatusCode().is2xxSuccessful()) {
             AgraviadoDTO[] body = agraviadoResponse.getBody();
             List<AgraviadoDTO> agra = Arrays.asList(body);
-           // agra.stream().forEach(p -> log.info("Agraviados: {}", p));// CON ESTO PUEDES VER LOS DATOS EN EL LOG SI QUIERES
+            agra.stream().forEach(p -> log.info("Agraviados: {}", p));// CON ESTO PUEDES VER LOS DATOS EN EL LOG SI QUIERES
+
+            agraviados = agra;
+        }
+        return Optional.of(agraviados);
+    }
+
+    public Optional<AgraviadoDTO> getAgraviado(Integer id) {
+
+        AgraviadoDTO agraviados = null;
+        ResponseEntity<AgraviadoDTO> agraviadoResponse = restTemplate.getForEntity(AGRAVIADOS_ENDPOINT+"/"+id, AgraviadoDTO.class);
+        if (agraviadoResponse.getStatusCode().is2xxSuccessful()) {
+            AgraviadoDTO body = agraviadoResponse.getBody();
+            AgraviadoDTO agra = body;
+            //agra.stream().forEach(p -> log.info("Agraviados: {}", p));// CON ESTO PUEDES VER LOS DATOS EN EL LOG SI QUIERES
 
             agraviados = agra;
         }

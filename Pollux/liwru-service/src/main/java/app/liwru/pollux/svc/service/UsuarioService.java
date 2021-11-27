@@ -1,10 +1,13 @@
 package app.liwru.pollux.svc.service;
 
+import app.liwru.pollux.svc.model.Incidencia;
+import app.liwru.pollux.svc.model.Rol;
 import app.liwru.pollux.svc.model.Usuario;
 import app.liwru.pollux.svc.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService implements CrudService<Usuario, Integer> {
@@ -15,29 +18,55 @@ public class UsuarioService implements CrudService<Usuario, Integer> {
         this.usuarioRepository = usuarioRepository;
     }
 
+
     @Override
-    public void create(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Optional<Usuario> findById(Integer integer) {
+        return usuarioRepository.findById(integer);
     }
 
     @Override
-    public void update(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Optional<List<Usuario>> findAll() {
+        return Optional.of(usuarioRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        usuarioRepository.deleteById(id);
+    public Usuario saveOrUpdate(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
     @Override
-    public Usuario findById(Integer id) {
-        return usuarioRepository.findById(id)
-                .orElse(null);
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((usuario->{
+            usuarioRepository.delete(usuario);
+            return true;
+        })).orElse(false);
     }
 
-    @Override
-    public List<Usuario> findAll() {
-        return usuarioRepository.findAll();
+    public boolean logicDelete(Integer integer) {
+        return findById(integer)
+                .map(usuario -> {
+                    usuario.setEstado(0);
+                    saveOrUpdate(usuario);
+                    return true;
+                }).orElse(false);
+        }
+
+    public boolean logicActive(Integer integer) {
+        return findById(integer)
+                .map(usuario -> {
+                    usuario.setEstado(1);
+                    saveOrUpdate(usuario);
+                    return true;
+                }).orElse(false);
     }
+
+
+
+    public Optional<List<Usuario>> findByRols(Integer id) {
+        return Optional.of(usuarioRepository.findByIdRolUsuario(id));
+    }
+
+
+
 }
+

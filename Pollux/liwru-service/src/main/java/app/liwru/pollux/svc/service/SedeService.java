@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.SedeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SedeService implements CrudService<Sede, Integer> {
@@ -15,29 +16,46 @@ public class SedeService implements CrudService<Sede, Integer> {
         this.sedeRepository = sedeRepository;
     }
 
+
     @Override
-    public void create(Sede sede) {
-        sedeRepository.save(sede);
+    public Optional<Sede> findById(Integer integer) {
+        return sedeRepository.findById(integer);
     }
 
     @Override
-    public void update(Sede sede) {
-        sedeRepository.save(sede);
+    public Optional<List<Sede>> findAll() {
+        return Optional.of(sedeRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        sedeRepository.deleteById(id);
+    public Sede saveOrUpdate(Sede sede) {
+        return sedeRepository.save(sede);
     }
 
     @Override
-    public Sede findById(Integer id) {
-        return sedeRepository.findById(id)
-                .orElse(null);
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((sede->{
+            sedeRepository.delete(sede);
+            return true;
+        })).orElse(false);
     }
 
-    @Override
-    public List<Sede> findAll() {
-        return sedeRepository.findAll();
+    public boolean logicDelete(Integer integer) {
+        return findById(integer)
+                .map(sede -> {
+                    sede.setEstado(0);
+                    saveOrUpdate(sede);
+                    return true;
+                }).orElse(false);
     }
+
+    public boolean logicActive(Integer integer) {
+        return findById(integer)
+                .map(sede -> {
+                    sede.setEstado(1);
+                    saveOrUpdate(sede);
+                    return true;
+                }).orElse(false);
+    }
+
 }

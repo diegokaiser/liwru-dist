@@ -14,7 +14,21 @@ public class IncidenciaDTO {
     private String codigoIncidencia;
     private LocalDate fechaIncidencia;
     private Integer tipoAtencion;
+    private String fechaAproximada;
+    private Integer existeDocs;
+    private Integer fileDocs;
+    private String pedidoIncidencia;
+    private String detalleIncidencia;
+    private Integer tipoContacto;
+    private String justificacionIncidencia;
+    private String actualizadoPor;
 
+    private Integer idMotivo;
+    private Integer idTipoDoc;
+    private Integer idEstado;
+    private Integer idSede;
+    private Integer idAgraviado;
+    private Integer idUsuario;
 
     private LocalDate createdAt;
     private LocalDate updatedAt;
@@ -26,7 +40,6 @@ public class IncidenciaDTO {
     private EstadoDTO estado;
     private AgraviadoDTO agraviado;
     private SedeDTO sede;
-
-
+    private DocumentoDTO documento;
 
 }

@@ -5,6 +5,7 @@ import app.liwru.pollux.svc.repository.IncidenciaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncidenciaService implements CrudService<Incidencia, Integer> {
@@ -16,28 +17,33 @@ public class IncidenciaService implements CrudService<Incidencia, Integer> {
     }
 
     @Override
-    public void create(Incidencia incidencia) {
-        incidenciaRepository.save(incidencia);
+    public Optional<Incidencia> findById(Integer integer) {
+        return incidenciaRepository.findById(integer);
     }
 
     @Override
-    public void update(Incidencia incidencia) {
-        incidenciaRepository.save(incidencia);
+    public Optional<List<Incidencia>> findAll() {
+        return Optional.of(incidenciaRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        incidenciaRepository.deleteById(id);
+    public Incidencia saveOrUpdate(Incidencia incidencia) {
+        return incidenciaRepository.save(incidencia);
     }
 
     @Override
-    public Incidencia findById(Integer id) {
-        return incidenciaRepository.findById(id)
-                .orElse(null);
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((incidencia->{
+            incidenciaRepository.delete(incidencia);
+            return true;
+        })).orElse(false);
     }
 
-    @Override
-    public List<Incidencia> findAll() {
-        return incidenciaRepository.findAll();
+
+    public Optional<List<Incidencia>> findByIdAgraviado(Integer integer) {
+        return  incidenciaRepository.findByIdAgraviado(integer);
     }
+
+
+
 }

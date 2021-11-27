@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import app.liwru.pollux.svc.model.Agraviado;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AgraviadoService implements CrudService<Agraviado, Integer> {
@@ -15,29 +16,36 @@ public class AgraviadoService implements CrudService<Agraviado, Integer> {
         this.agraviadoRepository = agraviadoRepository;
     }
 
+
     @Override
-    public void create(Agraviado agraviado) {
-        agraviadoRepository.save(agraviado);
+    public Optional<Agraviado> findById(Integer integer) {
+        return agraviadoRepository.findById(integer);
     }
 
     @Override
-    public void update(Agraviado agraviado) {
-        agraviadoRepository.save(agraviado);
+    public Optional<List<Agraviado>> findAll() {
+        return Optional.of(agraviadoRepository.findAll());
     }
 
     @Override
-    public void delete(Integer id) {
-        agraviadoRepository.deleteById(id);
+    public Agraviado saveOrUpdate(Agraviado agraviado) {
+        return agraviadoRepository.save(agraviado);
     }
 
     @Override
-    public Agraviado findById(Integer id) {
-        return agraviadoRepository.findById(id)
-                .orElse(null);
+    public boolean deleteById(Integer integer) {
+        return findById(integer).map((agraviado->{
+            agraviadoRepository.delete(agraviado);
+            return true;
+        })).orElse(false);
     }
 
-    @Override
-    public List<Agraviado> findAll() {
-        return agraviadoRepository.findAll();
+    public boolean logicDelete(Integer integer) {
+        return findById(integer)
+                .map(agraviado -> {
+                    agraviado.setEstado(0);
+                    return true;
+                }).orElse(false);
     }
+
 }

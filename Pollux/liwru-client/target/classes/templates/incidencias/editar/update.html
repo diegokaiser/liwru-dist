@@ -41,122 +41,125 @@
 
       <!-- Begin Page Content -->
       <div class="container-fluid">
-        <div class="text-center">
-          <h1 class="h4 text-gray-900 mb-4">Editar de Incidencia</h1>
-        </div>
 
-        <form  method="POST" >
+        <form action="#" method="post" th:action="@{/incidencias/save}" th:object="${incidencia}">
 
-          <div class="form-group">
-            <a>Codigo</a>
-            <input type="text" class="form-control form-control-user" id="codigo" name="codigo"
-                   value=""  placeholder="BCP-000001" disabled>
-          </div>
-
-          <div class="form-group">
-            <a>Fecha incidencia</a>
-            <input type="text" class="form-control form-control-user" id="fechainc" name="fechainc"
-                   value=""  placeholder="2021-07-15" disabled>
-          </div>
-          <div class="form-group">
-            <a>Tipo incidencia</a>
-            <input type="text" class="form-control form-control-user" id="tipoinc" name="tipoinc"
-                   value="" placeholder="QUEJA" disabled>
-          </div>
-          <div class="form-group">
-            <a>Motivo</a>
-            <input type="text" class="form-control form-control-user" id="motivo" name="motivo"
-                   value="" placeholder="Demora en la atención" disabled>
-          </div>
-          <div class="form-group" style="">
-            <a>Estado</a> <br>
-            <select class="select-css " style="
-  color: #0063bd;
-  background: white;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 2px 10px;
-  width: 378px;
-  *width: 350px;
-" >
-              <option value="1">Recibido</option>
-              <option value="2">En Proceso</option>
-              <option value="3">Resuelto</option>
-              <option value="3">Rechazado</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <a>Sede</a>
-            <input type="text" class="form-control form-control-user" id="sede" name="sede"
-                   value="BCP Agencia Tumbes" placeholder="" disabled>
-          </div>
-          <div class="form-group">
-            <a>Agraviado</a>
-            <input type="text" class="form-control form-control-user" id="agraviado" name="agraviado"
-                   value="LUIGGI FABIAN, MINCHOLA CHICLE" placeholder="" disabled>
-          </div>
-          <div class="form-group">
-            <a>Tipo Atención</a>
-            <input type="text" class="form-control form-control-user" id="tipoate" name="tipoate"
-                   value="PRESENCIAL" placeholder="" disabled>
+          <input type="hidden" class="form-control" id="estado" name="estado" th:field="*{idIncidencia}">
+          <!--oculto jejej-->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary" >
+                    Incidencia Nro.
+                    <input type="text" class="form-control form-control-user" id="codigo" name="codigo"
+                           value="" th:field="*{codigoIncidencia}" disabled>
+                  </h6>
+                </div>
+              </div>
+            </div>
           </div>
 
-
-          <div class="form-group">
-            <a>Documento de Evidencia</a>
-            <input type="text" class="form-control form-control-user" id="docevi" name="docevi"
-                   value="Documentos de registro y afiliación al banco, ticket con el numero y hora de atención" placeholder="" disabled>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card shadow mb-4">
+                <div class="card-body">
+                  <div class="form-group">
+                    <a>Agraviado</a>
+                    <input type="text" class="form-control form-control-user" id="agraviado" name="agraviado"
+                           value="" th:field="*{agraviado.clienteNombre}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <a>Fecha incidencia</a>
+                    <input type="text" class="form-control form-control-user" id="fechainc" name="fechainc"
+                           value="" th:field="*{fechaIncidencia}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <a>Tipo incidencia</a>
+                    <input type="text" class="form-control form-control-user" id="tipoinc" name="tipoinc"
+                           value="" th:field="*{tipoIncidencia.descripcion}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <a>Motivo</a>
+                    <input type="text" class="form-control form-control-user" id="motivo" name="motivo"
+                           value="" th:field="*{motivo.estadoDescripcion}" disabled>
+                  </div>
+                  <th:block th:switch="*{tipoAtencion}">
+                  <div class="form-group" th:case="'1'">
+                    <a>Sede</a>
+                    <input type="text" class="form-control form-control-user" id="sede" name="sede"
+                           value="" th:field="*{sede.nombre}" disabled>
+                  </div>
+                  </th:block>
+                  <div class="form-group">
+                    <a>Documento de Evidencia</a>
+                    <input type="text" class="form-control form-control-user" id="docevi" name="docevi"
+                           value="" th:field="*{fileDocs}" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card shadow mb-4">
+                <div class="card-body">
+                  <div class="form-group">
+                    <a>Detalles de Incidencia</a>
+                    <input type="text" class="form-control form-control-user" id="detalleinci" name="detalleinci"
+                           value="" th:field="*{detalleIncidencia}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <a>Pedido de Incidencia</a>
+                    <input type="text" class="form-control form-control-user" id="pedidoInc" name="pedidoInc"
+                           value="" th:field="*{pedidoIncidencia}" disabled>
+                  </div>
+                  <th:block th:switch="*{tipoContacto}">
+                  <div class="form-group" th:case="'0'">
+                    <a>Correo electrónico;</a>
+                    <input type="text" class="form-control form-control-user" id="" name="tipocont"
+                           value="usuario.correo" disabled>
+                  </div>
+                  <div class="form-group" th:case="'1'">
+                    <a>Número de celular:</a>
+                    <input type="text" class="form-control form-control-user" id="tipocont" name="tipocont"
+                           value="usuario.celular" disabled>
+                  </div>
+                  </th:block>
+                  <div class="form-group" style="">
+                    <a>Estado</a> <br>
+                    <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{idEstado}">
+                      <option th:each="esta:${estado}"
+                              th:value="${esta.idEstado}"
+                              th:text="${esta.estadoDescripcion}"
+                              th:selected="${esta.idEstado}"></option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <a>Responsable</a> <br>
+                    <select class="custom-select custom-select-sm form-control form-control-sm" th:field="*{idUsuario}">
+                      <option th:each="usuR:${usuarioRol}"
+                              th:value="${usuR.idUsuario}"
+                              th:text="${usuR.nombreUsuario}"
+                              th:selected="${usuR.idUsuario}"></option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="submit" class="btn btn-success btn-user btn-block" value="Guardar">
+                        </div>
+                        <div class="col-md-6">
+                          <a href="../../incidencias" class="btn btn-danger btn-user btn-block">Cancelar</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="form-group">
-            <a>Pedido de Incidencia</a>
-            <input type="text" class="form-control form-control-user" id="pedidoInc" name="pedidoInc"
-                   value="buen día, me gustaria que mejoraran en el area de atencion al cliente, puede observar que demoran demasiado en ello." placeholder="" disabled>
-          </div>
-
-          <div class="form-group">
-            <a>Detalles de Incidencia</a>
-            <input type="text" class="form-control form-control-user" id="detalleinci" name="detalleinci"
-                   value="Hay mucha demora en a la atención, motivo por el cual se le escribe" placeholder="" disabled>
-          </div>
-
-          <div class="form-group">
-            <a>Tipo de contacto</a>
-            <input type="text" class="form-control form-control-user" id="tipocont" name="tipocont"
-                   value="" placeholder="E-MAIL" disabled>
-          </div>
-
-
-
-          <div class="form-group">
-            <a>Responsable</a> <br>
-            <select  name="selectRes" style="
-              color: #0063bd;
-  background: white;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 2px 10px;
-  width: 378px;
-  *width: 350px;
-">
-              <option selected >Seleccionar responsable</option>
-              <option value="value1" >LUIS ENRIQUE</option>
-              <option value="value2" >NICOLE KATHERINE</option>
-              <option value="value3">CRISTIAN ORLANDO</option>
-            </select>
-          </div>
-
-          <!--                    <div class="form-group">-->
-          <!--	                        <textarea class="form-control form-control-user" id="detalle" name="detalle"-->
-          <!--                                      rows="5" th:field="*{detalle}"></textarea>-->
-          <!--                    </div>-->
-          <!--                    <div class="form-group">-->
-          <!--                        <input type="text" class="form-control form-control-user" id="fecha" name="fecha"-->
-          <!--                               value="" th:field="*{usuarioEnvia.nombres}">-->
-          <!--                    </div>-->
-          <input type="submit" class="btn btn-success btn-user btn-block" value="Guardar">
-          <input type="button" class="btn btn-danger btn-user btn-block" value="Cancelar">
         </form>
+
       </div>
       <!-- /.container-fluid -->
 
@@ -198,21 +201,21 @@
   </div>
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="https://liwru.s3.amazonaws.comvendor/jquery/jquery.min.js"></script>
-<script src="https://liwru.s3.amazonaws.comvendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/vendor/jquery/jquery.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- CorluginavaScript-->
-<script src="https://liwru.s3.amazonaws.comvendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Cus scris for all pages-->
-<script src="https://liwru.s3.amazonaws.comjs/sb-admin-2.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/js/sb-admin-2.min.js"></script>
 
 <!-- Pagevel ugins -->
-<script src="https://liwru.s3.amazonaws.comvendor/datatables/jquery.dataTables.min.js"></script>
-<script src="https://liwru.s3.amazonaws.comvendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="https://liwru.s3.amazonaws.com/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Pagevel stom scripts -->
-<script src="https://liwru.s3.amazonaws.comjs/demo/datatables-demo.js"></script>
+<script src="https://liwru.s3.amazonaws.com/js/demo/datatables-demo.js"></script>
 
 </body>
 
